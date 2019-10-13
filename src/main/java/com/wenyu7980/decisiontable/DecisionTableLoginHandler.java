@@ -45,7 +45,7 @@ public class DecisionTableLoginHandler implements LoginHandler {
         // 用户名+密码
         User user1 = userService.findByUsername(user.getUsername());
         if (Objects.equals(user1.getPassword(), user.getPassword())) {
-            return user1;
+            return user1.setMethod(User.LoginMethod.USER_PASS);
         }
         throw new RuntimeException("密码不正确");
     }
@@ -54,7 +54,7 @@ public class DecisionTableLoginHandler implements LoginHandler {
         // 用户名+验证码
         User user1 = userService.findByUsername(user.getUsername());
         if (codeService.codeCheck(user.getCode())) {
-            return user1;
+            return user1.setMethod(User.LoginMethod.USER_CODE);
         }
         throw new RuntimeException("验证码不正确");
     }
@@ -63,7 +63,7 @@ public class DecisionTableLoginHandler implements LoginHandler {
         // 手机号+密码
         User user1 = userService.findByMobile(user.getMobile());
         if (Objects.equals(user1.getPassword(), user.getPassword())) {
-            return user1;
+            return user1.setMethod(User.LoginMethod.MOBILE_PASS);
         }
         throw new RuntimeException("密码不正确");
     }
@@ -72,7 +72,7 @@ public class DecisionTableLoginHandler implements LoginHandler {
         // 手机号+验证码
         User user1 = userService.findByMobile(user.getMobile());
         if (codeService.codeCheck(user.getCode())) {
-            return user1;
+            return user1.setMethod(User.LoginMethod.MOBILE_CODE);
         }
         throw new RuntimeException("验证码不正确");
     }

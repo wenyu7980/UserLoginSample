@@ -24,7 +24,7 @@ public class LoginComponentMobileCode implements LoginComponent {
         // 手机号+验证码
         User user1 = userService.findByMobile(user.getMobile());
         if (codeService.codeCheck(user.getCode())) {
-            return user1;
+            return user1.setMethod(User.LoginMethod.MOBILE_CODE);
         }
         throw new RuntimeException("验证码不正确");
     }

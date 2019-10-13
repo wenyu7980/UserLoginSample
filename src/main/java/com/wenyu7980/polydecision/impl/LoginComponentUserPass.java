@@ -23,7 +23,7 @@ public class LoginComponentUserPass implements LoginComponent {
         // 用户名+密码
         User user1 = userService.findByUsername(user.getUsername());
         if (Objects.equals(user1.getPassword(), user.getPassword())) {
-            return user1;
+            return user1.setMethod(User.LoginMethod.USER_PASS);
         }
         throw new RuntimeException("密码不正确");
     }

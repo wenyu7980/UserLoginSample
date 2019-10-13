@@ -1,6 +1,7 @@
 package com.wenyu7980;
 
 import com.wenyu7980.domain.LoginUser;
+import com.wenyu7980.domain.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,8 +23,9 @@ public class UserloginHanlderTests {
         LoginUser user = new LoginUser("username", "passwd", null, null);
         for (Map.Entry<String, LoginHandler> entry : loginHandlerMap
                 .entrySet()) {
-            Assert.assertEquals("用户名密码" + entry.getKey(), user.getUsername(),
-                    entry.getValue().login(user).getUsername());
+            Assert.assertEquals("用户名密码" + entry.getKey(),
+                    User.LoginMethod.USER_PASS,
+                    entry.getValue().login(user).getMethod());
         }
     }
 
@@ -32,8 +34,9 @@ public class UserloginHanlderTests {
         LoginUser user = new LoginUser("username", null, null, "8888");
         for (Map.Entry<String, LoginHandler> entry : loginHandlerMap
                 .entrySet()) {
-            Assert.assertEquals("用户名密码" + entry.getKey(), user.getUsername(),
-                    entry.getValue().login(user).getUsername());
+            Assert.assertEquals("用户名验证码" + entry.getKey(),
+                    User.LoginMethod.USER_CODE,
+                    entry.getValue().login(user).getMethod());
         }
     }
 
@@ -42,8 +45,9 @@ public class UserloginHanlderTests {
         LoginUser user = new LoginUser(null, "passwd", "18812341234", null);
         for (Map.Entry<String, LoginHandler> entry : loginHandlerMap
                 .entrySet()) {
-            Assert.assertEquals("用户名密码" + entry.getKey(), user.getMobile(),
-                    entry.getValue().login(user).getMobile());
+            Assert.assertEquals("手机号密码" + entry.getKey(),
+                    User.LoginMethod.MOBILE_PASS,
+                    entry.getValue().login(user).getMethod());
         }
     }
 
@@ -52,8 +56,9 @@ public class UserloginHanlderTests {
         LoginUser user = new LoginUser(null, null, "18812341234", "8888");
         for (Map.Entry<String, LoginHandler> entry : loginHandlerMap
                 .entrySet()) {
-            Assert.assertEquals("用户名密码" + entry.getKey(), user.getMobile(),
-                    entry.getValue().login(user).getMobile());
+            Assert.assertEquals("手机号验证码" + entry.getKey(),
+                    User.LoginMethod.MOBILE_CODE,
+                    entry.getValue().login(user).getMethod());
         }
     }
 }

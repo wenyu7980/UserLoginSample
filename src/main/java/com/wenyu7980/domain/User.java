@@ -4,6 +4,7 @@ public class User {
     private String username;
     private String password;
     private String mobile;
+    private LoginMethod method;
 
     public User(String username, String password, String mobile) {
         this.username = username;
@@ -35,4 +36,19 @@ public class User {
         this.mobile = mobile;
     }
 
+    public LoginMethod getMethod() {
+        return method;
+    }
+
+    public User setMethod(LoginMethod method) {
+        this.method = method;
+        return this;
+    }
+
+    public static enum LoginMethod {
+        USER_PASS,
+        USER_CODE,
+        MOBILE_PASS,
+        MOBILE_CODE;
+    }
 }

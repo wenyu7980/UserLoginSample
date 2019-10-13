@@ -23,7 +23,7 @@ public class LoginComponentMobilePass implements LoginComponent {
         // 手机号+密码
         User user1 = userService.findByMobile(user.getMobile());
         if (Objects.equals(user1.getPassword(), user.getPassword())) {
-            return user1;
+            return user1.setMethod(User.LoginMethod.MOBILE_PASS);
         }
         throw new RuntimeException("密码不正确");
     }

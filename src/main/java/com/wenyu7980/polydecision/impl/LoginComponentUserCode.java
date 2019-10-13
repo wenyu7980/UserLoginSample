@@ -24,7 +24,7 @@ public class LoginComponentUserCode implements LoginComponent {
         // 用户名+验证码
         User user1 = userService.findByUsername(user.getUsername());
         if (codeService.codeCheck(user.getCode())) {
-            return user1;
+            return user1.setMethod(User.LoginMethod.USER_CODE);
         }
         throw new RuntimeException("验证码不正确");
     }
