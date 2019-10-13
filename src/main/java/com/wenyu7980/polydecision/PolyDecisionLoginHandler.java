@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
+@Component(value = "poly")
 public class PolyDecisionLoginHandler implements LoginHandler {
 
     private final DecisionTable<LoginComponent> DECISIONS = DecisionTable.of();

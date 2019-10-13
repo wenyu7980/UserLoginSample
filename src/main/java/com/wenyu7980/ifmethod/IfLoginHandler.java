@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
-@Component
+@Component(value = "if")
 public class IfLoginHandler implements LoginHandler {
 
     @Autowired

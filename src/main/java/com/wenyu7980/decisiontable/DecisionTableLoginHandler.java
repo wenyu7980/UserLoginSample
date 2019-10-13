@@ -6,12 +6,14 @@ import com.wenyu7980.domain.User;
 import com.wenyu7980.service.CodeService;
 import com.wenyu7980.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 import java.util.function.Function;
 
 import static com.wenyu7980.decisiontable.DecisionCompare.*;
 
+@Component(value = "decisiontable")
 public class DecisionTableLoginHandler implements LoginHandler {
     private final DecisionTable<Function<LoginUser, User>> DECISIONS = DecisionTable
             .of();
