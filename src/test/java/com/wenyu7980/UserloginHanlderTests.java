@@ -1,5 +1,6 @@
 package com.wenyu7980;
 
+import com.wenyu7980.domain.LoginUser;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,8 +18,42 @@ public class UserloginHanlderTests {
     private Map<String, LoginHandler> loginHandlerMap;
 
     @Test
-    public void loginHandler() {
-        Assert.assertEquals(3, this.loginHandlerMap.size());
+    public void loginHandlerUserPasswd() {
+        LoginUser user = new LoginUser("username", "passwd", null, null);
+        for (Map.Entry<String, LoginHandler> entry : loginHandlerMap
+                .entrySet()) {
+            Assert.assertEquals("用户名密码" + entry.getKey(), user.getUsername(),
+                    entry.getValue().login(user).getUsername());
+        }
     }
 
+    @Test
+    public void loginHandlerUserCode() {
+        LoginUser user = new LoginUser("username", null, null, "8888");
+        for (Map.Entry<String, LoginHandler> entry : loginHandlerMap
+                .entrySet()) {
+            Assert.assertEquals("用户名密码" + entry.getKey(), user.getUsername(),
+                    entry.getValue().login(user).getUsername());
+        }
+    }
+
+    @Test
+    public void loginHandlerMobilePass() {
+        LoginUser user = new LoginUser(null, "passwd", "18812341234", null);
+        for (Map.Entry<String, LoginHandler> entry : loginHandlerMap
+                .entrySet()) {
+            Assert.assertEquals("用户名密码" + entry.getKey(), user.getMobile(),
+                    entry.getValue().login(user).getMobile());
+        }
+    }
+
+    @Test
+    public void loginHandlerMobileCode() {
+        LoginUser user = new LoginUser(null, null, "18812341234", "8888");
+        for (Map.Entry<String, LoginHandler> entry : loginHandlerMap
+                .entrySet()) {
+            Assert.assertEquals("用户名密码" + entry.getKey(), user.getMobile(),
+                    entry.getValue().login(user).getMobile());
+        }
+    }
 }

@@ -6,6 +6,17 @@ public class LoginUser {
     private String mobile;
     private String code;
 
+    public LoginUser() {
+    }
+
+    public LoginUser(String username, String password, String mobile,
+            String code) {
+        this.username = username;
+        this.password = password;
+        this.mobile = mobile;
+        this.code = code;
+    }
+
     public String getUsername() {
         return username;
     }

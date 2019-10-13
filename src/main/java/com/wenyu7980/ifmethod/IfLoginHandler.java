@@ -44,7 +44,7 @@ public class IfLoginHandler implements LoginHandler {
                 return user1;
             }
             throw new RuntimeException("密码不正确");
-        } else if (Objects.nonNull(user.getUsername()) && Objects
+        } else if (Objects.nonNull(user.getMobile()) && Objects
                 .nonNull(user.getCode())) {
             // 手机号+验证码
             User user1 = userService.findByMobile(user.getMobile());
